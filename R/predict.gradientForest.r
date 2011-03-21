@@ -1,5 +1,5 @@
 `predict.gradientForest` <-
-function (object, newdata, ...)
+function (object, newdata, extrap=TRUE, ...)
 {
     linfun <- function(xold,yold,xnew) 
         yold[1] + (xnew-xold[1])*diff(yold)/diff(xold)
@@ -15,8 +15,12 @@ function (object, newdata, ...)
     for (varX in newnames) {
         ci <- cumimp(object, varX)
         xold <- range(ci$x)
+        yold <- range(ci$y)
         xnew <- range(newdata[,varX],na.rm=T)
-        ynew <- linfun(range(ci$x), range(ci$y), xnew)
+        if (extrap)
+          ynew <- linfun(xold, yold, xnew)
+        else 
+          ynew <- yold
         if (xnew[1] < xold[1]) {
             ci$x <- c(xnew[1],ci$x)
             ci$y <- c(ynew[1],ci$y)
