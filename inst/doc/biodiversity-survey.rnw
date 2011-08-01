@@ -247,7 +247,12 @@ variation in patterns is captured by the first dimensions, additional
 compositional pattern contained in the higher dimensions is not shown. A user
 defined RGB colour palette is set up based on the first 3 dimensions. 
 <<c14, eval=TRUE,echo=TRUE,fig=FALSE>>= 
-PCs <- prcomp(Trns_grid[,imp.vars])  
+PCs <- prcomp(Trns_grid[,imp.vars]) 
+# ensure BSTRESS points to upper right quadrant
+sgn <- sign(PCs$rotation["BSTRESS",]) 
+PCs$rotation <- sweep(PCs$rotation,2,sgn,"*")
+PCs$x <- sweep(PCs$x,2,sgn,"*")
+ 
 # set up a colour palette for the mapping
 a1 <- PCs$x[,1]
 a2 <- PCs$x[,2]
