@@ -91,8 +91,8 @@ out-of-bag error rate.
 \references{
 L. Breiman. Random Forests. \emph{Machine Learning}, \bold{45(1)}:5-32, 2001.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 
 Andy Liaw and Matthew Wiener. Classification and regression by randomforest. \emph{R News}, \bold{2(3)}:
 18-22, 2002. URL http://CRAN.R-project.org/doc/Rnews/.
@@ -105,11 +105,6 @@ S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>
 }
 
 
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{plot.gradientForest}}

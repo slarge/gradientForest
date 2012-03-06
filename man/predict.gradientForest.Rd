@@ -1,14 +1,16 @@
 \name{predict.gradientForest}
 \alias{predict.gradientForest}
+\alias{predict.combinedGradientForest}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Predict for  gradientForest
+Predict for gradientForest
 }
 \description{
-Predict method for gradientForest objects.
+Predict method for gradientForest or combinedGradientForest objects.
 }
 \usage{
 \method{predict}{gradientForest}(object, newdata, extrap=TRUE, ...)
+\method{predict}{combinedGradientForest}(object, newdata, extrap=TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,7 +19,7 @@ an object of class \code{"gradientForest"} or \code{"combinedGradientForest"}.
 }
   \item{newdata}{
 An optional data frame in which to look for variables with which to predict. 
-If omitted, the environmental varaibles at the sites are used (\code{object$X}).
+If omitted, the environmental variables at the sites in \code{object$X} are used.
 }
   \item{extrap}{
 if \code{TRUE} use linear extrapolation for predictor values outside the range of the 
@@ -46,21 +48,17 @@ below \code{xmin} are fixed at \code{ymin} and predictions above \code{xmax} are
 This is equivalent to assigning zero importance outside the range of the site data. 
 }
 \value{
-a dataframe in which each predictor has been transformed to the biological scale
-by the cumulative importance function, as defined by \code{cumimp}.
+an object of class \code{predict.gradientForest}. It is a dataframe in which each predictor 
+has been transformed to the biological scale by the cumulative importance 
+function, as defined by \code{cumimp}.  
 }
 \references{
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 }
 \author{
 N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{gradientForest}}

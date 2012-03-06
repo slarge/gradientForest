@@ -71,9 +71,9 @@ The following are the default settings when \code{plot.args=NULL} for each plot 
 
 Overall.Importance: \code{list(cex.axis = 0.7, cex.names = cex.axis, las=1,horiz = TRUE)}
   
-Split.Density: \code{ist(leg.posn="topright",bin=F, nbin=101, leg.panel=1, barwidth=1, cex.legend=0.8, line.ylab=1.5)}
+Split.Density: \code{ist(leg.posn="topright",bin=FALSE, nbin=101, leg.panel=1, barwidth=1, cex.legend=0.8, line.ylab=1.5)}
   
-Cumulative.Importance: \code{list(leg.posn="topleft",Legend=TRUE,common.scale=F, line.ylab=1.0, cex.legend=0.75,
+Cumulative.Importance: \code{list(leg.posn="topleft",Legend=TRUE,common.scale=FALSE, line.ylab=1.0, cex.legend=0.75,
  show.species=TRUE,show.overall=TRUE,leg.nspecies=10)}, where \code{leg.nspecies} is set to the
 number of species in the legend (in order of importance) for cumulative importance plot. If \code{common.scale} 
 is \code{TRUE} the scale of the y axis is the same for all panels. If
@@ -108,8 +108,8 @@ out-of-bag error rate.
 \references{
 L. Breiman. Random Forests. \emph{Machine Learning}, \bold{45(1)}:5-32, 2001.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 
 Andy Liaw and Matthew Wiener. Classification and regression by randomforest. \emph{R News}, \bold{2(3)}:
 18-22, 2002. URL http://CRAN.R-project.org/doc/Rnews/.
@@ -122,11 +122,6 @@ S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>
 }
 
 
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{print.gradientForest}}

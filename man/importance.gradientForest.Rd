@@ -22,28 +22,14 @@ Compute the importance measures as a named vector
   }
   \item{\dots}{further arguments for other methods}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 a named vector of importance measures, one for each variable (or species), possibly sorted
-}
-\references{
-%% ~put references to the literature/web site here ~
 }
 \author{
 Original code written by N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>. 
         Modified by S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(CoMLsimulation)
 preds <- colnames(Xsimulation)

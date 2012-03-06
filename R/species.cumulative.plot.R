@@ -7,17 +7,7 @@ function(obj,imp.vars=NULL, imp.vars.names=imp.vars,
 {
     # May want to allow for transformations
  	  if(is.null(imp.vars)) imp.vars<-imp.var.names <- names(importance(obj))[1:2]
-
-    n2mfrow <- function(n) {
-      if (length(n) != 1) stop(paste("n must be a single number"))
-      if (n==1) return(c(1,1))
-      if (n==2) return(c(1,2))
-      if (n==3) return(c(2,2))
-      n1 <- floor(sqrt(n))
-      n2 <- ceiling(n/n1)
-      c(n1,n2)
-    }
-    
+   
     par(mfrow=mfrow)
     cols <- rainbow(length(levels(obj$res.u$spec))) #modified SJS 08/10/2009
     names(cols) <- levels(obj$res.u$spec)  #modified SJS 08/10/2009

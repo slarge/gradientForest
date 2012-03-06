@@ -1,6 +1,10 @@
 `combinedGradientForest` <-
-function(..., nbin=101, method=2)
+function(..., nbin=101, method=2, standardize=c("before","after")[1])
 {
+    std.options <- c("before","after")
+    if (is.na(std.option <- pmatch(standardize,std.options)))
+      stop(paste('Unmatched standardize value "',standardize,'". Expecting "before" or "after"',sep=""))
+
     fList <- list(...)
     ngear <- length(fList)
     if(!all(sapply(fList,inherits,"gradientForest")))
@@ -58,7 +62,7 @@ function(..., nbin=101, method=2)
 #   Normalize relative to combined importance
 #
     gridded.cumulative.importance <- function(obj, predictor) {
-      cu <- cumimp(obj, predictor=predictor)
+      cu <- cumimp(obj, predictor=predictor, standardize_after=(std.options[std.option]=="after"))
       grid <- bins[,predictor]
       y <- approx(cu$x,cu$y,grid,rule=2,method="linear")$y
       list(x=grid, y=y)

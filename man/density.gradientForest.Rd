@@ -26,25 +26,17 @@ name of predictor variable.
 further arguments passed to or from other methods.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
   Provides Gaussian kernel density estimates for a specified physical variable.
 }
 \references{
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 }
 \author{
 N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>
 }
 
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{gradientForest}}, ~~~

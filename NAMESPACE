@@ -1,21 +1,28 @@
-export(gradientForest, cumimp, cumimp.gradientForest, density.gradientForest, importance.gradientForest,
-      print.gradientForest, plot.gradientForest, predict.gradientForest, plot.predict.gradientForest, 
-      combinedGradientForest, cumimp.combinedGradientForest, density.combinedGradientForest, 
-      importance.combinedGradientForest, plot.combinedGradientForest, print.combinedGradientForest)
+export(
+  gradientForest, combinedGradientForest, 
+  cumimp, cumimp.gradientForest, cumimp.combinedGradientForest, 
+  density.gradientForest, density.combinedGradientForest, 
+  importance.gradientForest, importance.combinedGradientForest, 
+  print.gradientForest, print.combinedGradientForest, 
+  plot.gradientForest, plot.combinedGradientForest, 
+  predict.gradientForest, predict.combinedGradientForest, 
+  plot.predict.gradientForest
+)
 
 importFrom(extendedForest, importance)
 importFrom(stats, density)
 S3method(cumimp, gradientForest)
-S3method(density, gradientForest)
-S3method(importance, gradientForest)
-S3method(print, gradientForest)
-S3method(plot, gradientForest)
-S3method(predict, gradientForest)
-S3method(plot, predict.gradientForest)
 S3method(cumimp, combinedGradientForest)
+S3method(density, gradientForest)
 S3method(density, combinedGradientForest)
+S3method(importance, gradientForest)
 S3method(importance, combinedGradientForest)
-S3method(plot, combinedGradientForest)
+S3method(print, gradientForest)
 S3method(print, combinedGradientForest)
+S3method(plot, gradientForest)
+S3method(plot, combinedGradientForest)
+S3method(predict, gradientForest)
+S3method(predict, combinedGradientForest)
+S3method(plot, predict.gradientForest)
 
 

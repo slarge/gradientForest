@@ -41,18 +41,11 @@ Need details here.
 \value{
 Need output here. 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
     N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>.
     S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
  \code{\link{combinedGradientForest}}

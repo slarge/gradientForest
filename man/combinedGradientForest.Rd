@@ -10,7 +10,7 @@ Creates an object of class \code{combinedGradientForest} that represents the syn
 two or more \code{gradientForest} objects.
 }
 \usage{
-combinedGradientForest(..., nbin = 101,method=2)
+combinedGradientForest(..., nbin = 101, method=2, standardize=c("before","after")[1])
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,12 +19,12 @@ combinedGradientForest(..., nbin = 101,method=2)
 }
   \item{method}{  method=1, calls combine.cumulative.importance.method1, method=2 calls
   combine.cumulative.importance.
-%%     ~~Describe \code{method} here~~
+}
+  \item{standardize}{ Should standardization by density occur before or after normalization to R^2?
+  Takes values "before" or "after", or abbreviations thereof. Default "before".
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
     \item{call}{
         the matched call
@@ -58,8 +58,8 @@ combinedGradientForest(..., nbin = 101,method=2)
 \references{
 Breiman, L. (2001) Random Forests, \emph{Machine Learning}, \bold{45(1)}, 5--32.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 
 Liaw, A. and Wiener, M. (2002) Classification and regression by randomforest. \emph{R News}, \bold{2(3)},
 18--22. \url{http://CRAN.R-project.org/doc/Rnews/}
@@ -72,15 +72,8 @@ Open Access: \url{http://www.biomedcentral.com/1471-2105/9/307}
     N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>.
     S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(CoMLsimulation)
 preds <- colnames(Xsimulation)

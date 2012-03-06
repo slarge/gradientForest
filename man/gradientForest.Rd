@@ -75,8 +75,8 @@ gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NU
 \references{
 Breiman, L. (2001) Random Forests, \emph{Machine Learning}, \bold{45(1)}, 5--32.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2010) Gradient Forests: calculating importance
-gradients on physical predictors. (submitted).
+Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
 
 Liaw, A. and Wiener, M. (2002) Classification and regression by randomforest. \emph{R News}, \bold{2(3)},
 18--22. \url{http://CRAN.R-project.org/doc/Rnews/}
@@ -90,11 +90,6 @@ Open Access: \url{http://www.biomedcentral.com/1471-2105/9/307}
 \author{Original code written by N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>. 
         Modified by S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@mar.dfo-mpo.gc.ca>}
 
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 
