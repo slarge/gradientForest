@@ -73,9 +73,8 @@ data(GBRexample)
 }
 
 \references{
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
-gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
-}
+Ellis, N., Smith, S.J., and Pitcher, C.R. (2011) Gradient Forests: calculating importance
+gradients on physical predictors. \emph{Ecology}, \bold{93}, 156--168.}
 
 \examples{
 data(GBRexample)

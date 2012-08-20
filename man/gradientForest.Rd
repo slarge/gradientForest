@@ -38,10 +38,10 @@ gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NU
                     permuted within \eqn{2^{maxLevel}} partitions of correlated variables.} 
     \item{corr.threshold}{if maxLevel > 0, OOB permuting is conditioned on partitions of variables having absolute correlation > corr.threshold.} 
 
-	\item{compact}{logical variable to choose standard method or compact method for aggregating importance measures across species.
-	                Compact=TRUE to be chosen when memory problems cause a crash in this function.  Still experimental.}
-   \item{nbin}{number of bins for compact option. Default set to 101.}	                
-   \item{trace}{if \code{TRUE} show the progress. Default \code{FALSE}.}	                
+    \item{compact}{logical variable to choose standard method or compact method for aggregating importance measures across species.
+                    Compact=TRUE to be chosen when memory problems cause a crash in this function.  Still experimental.}
+   \item{nbin}{number of bins for compact option. Default set to 101.}                  
+   \item{trace}{if \code{TRUE} show the progress. Default \code{FALSE}.}                    
 
 }
 \details{see \link{randomForest}
@@ -73,10 +73,10 @@ gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NU
 }
 
 \references{
-Breiman, L. (2001) Random Forests, \emph{Machine Learning}, \bold{45(1)}, 5--32.
+Breiman, L. (2001) Random Forests. \emph{Machine Learning}, \bold{45(1)}, 5--32.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
-gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
+Ellis, N., Smith, S.J., and Pitcher, C.R. (2012) Gradient Forests: calculating importance
+gradients on physical predictors. \emph{Ecology}, \bold{93}, 156--168.
 
 Liaw, A. and Wiener, M. (2002) Classification and regression by randomforest. \emph{R News}, \bold{2(3)},
 18--22. \url{http://CRAN.R-project.org/doc/Rnews/}
@@ -88,7 +88,7 @@ Open Access: \url{http://www.biomedcentral.com/1471-2105/9/307}
 }
 
 \author{Original code written by N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>. 
-        Modified by S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@mar.dfo-mpo.gc.ca>}
+        Modified by S.J. Smith, DFO, Dartmouth, NS, Canada. <Stephen.Smith@dfo-mpo.gc.ca>}
 
 
 \seealso{

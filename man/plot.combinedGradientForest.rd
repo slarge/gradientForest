@@ -89,13 +89,13 @@ out-of-bag error rate.
 
 }
 \references{
-L. Breiman. Random Forests. \emph{Machine Learning}, \bold{45(1)}:5-32, 2001.
+Breiman, L. (2001) Random Forests. \emph{Machine Learning}, \bold{45(1)}, 5--32.
 
-Ellis, N., Smith, S.J., and C.R. Pitcher. (2011) Gradient Forests: calculating importance
-gradients on physical predictors. (Pre-print available at \url{http://www.esajournals.org/toc/ecol/0/0}).
+Ellis, N., Smith, S.J., and Pitcher, C.R. (2012) Gradient Forests: calculating importance
+gradients on physical predictors. \emph{Ecology}, \bold{93}, 156--168.
 
-Andy Liaw and Matthew Wiener. Classification and regression by randomforest. \emph{R News}, \bold{2(3)}:
-18-22, 2002. URL http://CRAN.R-project.org/doc/Rnews/.
+Liaw, A. and Wiener, M. (2002) Classification and regression by randomforest. \emph{R News}, \bold{2(3)},
+18--22. \url{http://CRAN.R-project.org/doc/Rnews/}
 }
 
 \author{
