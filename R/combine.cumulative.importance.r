@@ -5,11 +5,7 @@
 #   corresponding to type of weighting. If weight is a vector it is
 #   converted to a matrix with a single row.
 #
-combine.cumulative.importance <- function(FList, densList, grid, weight) {
-    
-    # linear interpolation to grid
-    interpolate <- function(xy)
-      approx(xy$x,xy$y,grid,rule=2,method="linear")$y
+combine.cumulative.importance <- function(FList, densMat, grid, weight) {
     
     # convert matrix to a 3D array with n3 copies in the 3rd dimension
     mat2arr <- function(mat,n3) 
@@ -26,10 +22,10 @@ combine.cumulative.importance <- function(FList, densList, grid, weight) {
     Fmat <- do.call("cbind", lapply(FList, "[[", "y"))                  
     fmat <- diff(rbind(0,Fmat))/dx
     
-    # Interpolate density to common grid
+    # Interpolated density to common grid
     # densMat is matrix ngrid x number of gears
-    # Don't use the combined density, first element of densList
-    densMat <- sapply(densList[-1], interpolate)
+    # Don't use the combined density, first element of densMat
+    densMat <- densMat[,-1,drop=FALSE]
     
     # Perform the weighted average
     # f[x,type] = sum over gear{ d[x,gear]^3 w[type] f[x,gear]} /
@@ -38,7 +34,8 @@ combine.cumulative.importance <- function(FList, densList, grid, weight) {
     D <- mat2arr(densMat^3, nweight)
     D <- sweep(D,c(3,2),weight,"*")
     fmat <- mat2arr(fmat, nweight)
-    fmat_comb <- apply(fmat*D,c(1,3),sum)/apply(D,c(1,3),sum)                      
+    safe_ratio <- function(numer, denom) numer/(denom+(denom==0))
+    fmat_comb <- safe_ratio(apply(fmat*D,c(1,3),sum),apply(D,c(1,3),sum))
     
     # Finally integrate f(x) back to F(x)
     colnames(fmat_comb) <- rownames(weight)

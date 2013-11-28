@@ -19,6 +19,7 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
 #
 #   check the predictor names are the same
     npred <- sapply(fList, function(obj) ncol(obj$X))
+    nsite <- sapply(fList, function(obj) nrow(obj$X))
 #    if(!all(npred == npred[1]))
 #      stop("Every forest must have the same number of predictors")
     prednames <- lapply(fList, function(obj) sort(names(obj$X)))  # TO DO: allow for sorting
@@ -31,7 +32,7 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
 #    npred <- npred[1]
 #
 #   combined predictor matrix and common bins for importance curve grid
-    create.df.aux <- function(X) as.data.frame(do.call("cbind",lapply(namenames(allpreds), function(pred) {res <- X[[pred]]; if(is.null(res)) rep(NA,nrow(X)) else res})))
+    create.df.aux <- function(X) as.data.frame(do.call("cbind",lapply(namenames(allpreds), function(pred) {res <- X[[pred]]; if(is.null(res)) rep(0,nrow(X)) else res})))
     create.df <- function(X,transpose=F) {
       if (transpose) X <- as.data.frame(t(X))
       X <- create.df.aux(X)
@@ -64,23 +65,46 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
     gridded.cumulative.importance <- function(obj, predictor) {
       cu <- cumimp(obj, predictor=predictor, standardize_after=(std.options[std.option]=="after"))
       grid <- bins[,predictor]
-      y <- approx(cu$x,cu$y,grid,rule=2,method="linear")$y
+      if (length(cu$x)==1)
+        y <- approx(cu$x,cu$y,grid,rule=2,method="constant",yleft=0)$y
+      else y <- approx(cu$x,cu$y,grid,rule=2,method="linear")$y
       list(x=grid, y=y)
     }
+#
+#   Linear interpolation to grid
+#   Density outside survey is zero
+#
+    interpolate <- function(xy, grid) {
+      res <- approx(xy$x,xy$y,grid,rule=1,method="linear")$y
+      res[is.na(res)] <- 0
+      res
+    }
+
     CU <- lapply(namenames(allpreds), function(predictor)
       lapply(fList[gears[[predictor]]], gridded.cumulative.importance, predictor=predictor))
     rsq.total <- sapply(lapply(fList,"[[","result"),sum)
-    imp.rsq.total <- sapply(imp.rsq.list,rowSums)
+    imp.rsq.total <- sapply(imp.rsq.list,rowSums,na.rm=TRUE)
     for (predictor in allpreds) {
       g <- gears[[predictor]]
-      weight <- rbind(uniform=rep(1,length(g)), species=nspec[g], rsq.total=imp.rsq.total[predictor,g],rsq.mean=imp.rsq.total[predictor,g]/nspec[g])
+      weight <- rbind(
+        uniform = rep(1,length(g)), 
+        species = nspec[g], 
+        rsq.total = imp.rsq.total[predictor,g],
+        rsq.mean = imp.rsq.total[predictor,g]/nspec[g],
+        site = nsite[g], 
+        site.species = nsite[g]*nspec[g], 
+        site.rsq.total = nsite[g]*imp.rsq.total[predictor,g],
+        site.rsq.mean = nsite[g]*imp.rsq.total[predictor,g]/nspec[g]
+      )
       densList <- lapply(dens[c("Combined",g)],"[[",predictor) # list of densities, combined version first
       grid <- bins[,predictor]
+      densMat <- sapply(densList, interpolate, grid=grid)
+      CU[[predictor]][["density"]] <- list(x=grid,y=densMat)
       if (method==2) {
-        CUmat <- combine.cumulative.importance(CU[[predictor]][g], densList, grid, weight)
+        CUmat <- combine.cumulative.importance(CU[[predictor]][g], densMat, grid, weight)
       } else if (method==1) {
         imp <- rowMeans(imp.rsq)[predictor]
-        CUmat <- combine.cumulative.importance.method1(CU[[predictor]][g], densList, grid, weight, imp)
+        CUmat <- combine.cumulative.importance.method1(CU[[predictor]][g], densMat, grid, weight, imp)
       } else stop(paste("Unknown method:",method))
       for (i in rownames(weight))
         CU[[predictor]][[paste("combined",i,sep=".")]] <- list(x=grid,y=CUmat[,i])

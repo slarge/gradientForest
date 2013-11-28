@@ -8,7 +8,7 @@ Importance of the variables in a gradientForest or combinedGradientForest object
 Compute the importance measures as a named vector
 }
 \usage{
-\method{importance}{gradientForest}(x, type = c("Accuracy", "Impurity", "Weighted", "Raw", "Species")[3], sort = T, ...)
+\method{importance}{gradientForest}(x, type = c("Accuracy", "Impurity", "Weighted", "Raw", "Species")[3], sort = TRUE, ...)
 }
 \arguments{
   \item{x}{

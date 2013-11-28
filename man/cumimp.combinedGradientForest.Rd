@@ -9,7 +9,7 @@ Cumulative Importance of predictors for a combinedGradientForest object
 Provide access to the cumulative importance values of predictors after combining \code{\link{gradientForest}} objects.
 }
 \usage{
-\method{cumimp}{combinedGradientForest}(x, predictor, weight = c("uniform", "species", "rsq.total", "rsq.mean")[3], gear, ...)
+\method{cumimp}{combinedGradientForest}(x, predictor, weight = c("uniform", "species", "rsq.total", "rsq.mean", "site", "site.species", "site.rsq.total", "site.rsq.mean")[3], gear, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,10 +22,14 @@ Provide access to the cumulative importance values of predictors after combining
   \item{weight}{
     type of weighting to perform across gears. The choices are
     \itemize{
- 	  \item{uniform}{each gear gets weight 1}
-	  \item{species}{each gear gets weight equal to the number of species}
-	  \item{rsq.total}{each gear gets weight equal to the total \eqn{R^2} (default)}
-	  \item{rsq.mean}{each gear gets weight equal to the mean \eqn{R^2} per species}
+ 	  \item{uniform}{: each gear gets weight 1}
+	  \item{species}{: each gear gets weight equal to the number of species}
+	  \item{rsq.total}{: each gear gets weight equal to the total \eqn{R^2} (default)}
+	  \item{rsq.mean}{: each gear gets weight equal to the mean \eqn{R^2} per species}
+ 	  \item{site}{: each gear gets weight equal to the number of sites}
+	  \item{site.species}{: each gear gets weight equal to the number of species times the number of sites}
+	  \item{site.rsq.total}{: each gear gets weight equal to the total \eqn{R^2} times the number of sites}
+	  \item{site.rsq.mean}{: each gear gets weight equal to the mean \eqn{R^2} per species times the number of sites}
 	  }
   }
   \item{gear}{

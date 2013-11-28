@@ -16,8 +16,8 @@
     Xnames <- colnames(bins)
     tmp <- data.frame(var=Xnames[tmp[,"var_n"]], tmp, bin=rep(0,nrow(tmp)))
     for(p in Xnames) {
-        sub <- with(tmp,var==p)
-        tmp$bin[sub] <- as.numeric(cut(tmp$split[sub], bins[,p], include=TRUE, ordered=TRUE))
+        if(any(sub <- with(tmp,var==p)))
+          tmp$bin[sub] <- as.numeric(cut(tmp$split[sub], bins[,p], include=TRUE, ordered=TRUE))
     }
     tmp <- with(tmp[tmp$bin>0,],agg.sum(improve,list(var,bin),sort.it=TRUE))
     names(tmp) <- c("var","bin","improve")
@@ -26,8 +26,8 @@
 #   the bin centre is not appropriate value
     tmp <- cbind(tmp,split=rep(NA,nrow(tmp)),rsq=rep((err0-fit$err.rate[fit$ntree, "OOB"])/err0, nrow(tmp)))
     for(p in Xnames) {
-        sub <- with(tmp,var==p)
-        tmp$split[sub] <- midpoints(bins[,p])[tmp$bin[sub]]
+        if(any(sub <- with(tmp,var==p)))
+          tmp$split[sub] <- midpoints(bins[,p])[tmp$bin[sub]]
     }
     tmp[,c("var","rsq","split","improve","bin")]
 }

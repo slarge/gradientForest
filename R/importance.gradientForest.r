@@ -1,7 +1,7 @@
 `importance.gradientForest` <-
-function (x, type=c("Accuracy","Impurity","Weighted","Raw","Species")[3], sort=T, ...)
+function (x, type=c("Accuracy","Impurity","Weighted","Raw","Species")[3], sort=TRUE, ...)
 {
-    weighted <- rowMeans(x$imp.rsq)
+    weighted <- rowSums(x$imp.rsq, na.rm=TRUE)/ncol(x$imp.rsq)
     if (sort)
       o <- order(-weighted)
     else o <- 1:length(weighted)
@@ -10,8 +10,8 @@ function (x, type=c("Accuracy","Impurity","Weighted","Raw","Species")[3], sort=T
       x$overall.imp[nam][o],
       x$overall.imp2[nam][o],
       weighted[o],
-      rowMeans(sweep(x$imp.rsq,2,x$result,"/"))[o],
-      if (sort) sort(x$result,decreasing=T) else x$result
+      rowSums(sweep(x$imp.rsq,2,x$result,"/"), na.rm=TRUE)[o]/ncol(x$imp.rsq),
+      if (sort) sort(x$result,decreasing=TRUE) else x$result
     )
     if (is.null(res))
       stop(paste('Unmatched type "',type,'". Expecting one of "Accuracy", "Impurity", "Weighted", "Raw" or "Species"',sep=""))

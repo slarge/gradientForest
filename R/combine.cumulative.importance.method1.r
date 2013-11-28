@@ -11,12 +11,9 @@
 #   corresponding to type of weighting. If weight is a vector it is
 #   converted to a matrix with a single row.
 #
-combine.cumulative.importance.method1 <- function(CUList, densList, grid, weight, imp) {
-    interpolate <- function(xy, grid)
-      approx(xy$x,xy$y,grid,rule=2,method="linear")$y
+combine.cumulative.importance.method1 <- function(CUList, densMat, grid, weight, imp) {
     CUmat <- do.call("cbind", lapply(CUList, "[[", "y"))                  #1
     CUmat <- diff(rbind(0,CUmat))                                         #2
-    densMat <- sapply(densList, interpolate, grid=grid)
     CUmat <- CUmat*densMat[,-1]/densMat[,1]                               #3
     denom <- colSums(CUmat)                                               #3
     CUmat <- sweep(CUmat,2,denom + (denom==0),"/")                        #3

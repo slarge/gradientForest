@@ -1,5 +1,5 @@
 predictor.ranges.plot <-
-function (obj, mfrow = c(1, 2), mar = c(4, 6, 2, 1), ...)
+function (obj, ...)
 {
     o <- order(-importance(obj))
     X_r <- cbind(obj$X[,1], stack(obj$X[-1]))

@@ -42,7 +42,7 @@ The following are the default settings for par.args for each plot type. See  \co
 
 Overall.Importance: \code{list(mfrow = c(1, 2), mar = c(4, 6, 2, 1))}
   
-Predictor.Ranges: \code{list(mfrow = c(1, 2), mar = c(4, 6, 2, 1))}
+Predictor.Ranges: None
   
 Predictor.Density:  None
        
@@ -59,24 +59,31 @@ Predictor.Ranges: None
   
 Predictor.Density: None
    
-Cumulative.Importance: \code{list(weight=c("uniform","species","rsq.total","rsq.mean")[3],use.diff=FALSE, prednames=names(x$X)[-1])}, where
- \code{weight} is the type of weighting to perform across gears (see same argument in \code{\link{cumimp.combinedGradientForest}}), 
- if \code{use.diff} is \code{TRUE} the differenced cumulative importances are plotted, and \code{prednames} is the names of the predictors for which plots are required.   
+Cumulative.Importance: \code{list(weight="rsq.total", use.diff=FALSE, prednames=names(x$X)[-1], show.weights=FALSE, show.gears=TRUE, sort=TRUE)}, where:
+ \code{weight} is the type of weighting to perform across gears (see same argument in \code{\link{cumimp.combinedGradientForest}}); 
+ if \code{use.diff=TRUE} the differenced cumulative importances are plotted; 
+ \code{prednames} is the names of the predictors for which plots are required;
+ if \code{show.weights=TRUE} indicate gear weight per bin by colour saturation;
+ if \code{show.gears=FALSE} do not show the individual gear cumulative curves;
+ and if \code{sort=TRUE}, sort predictors by importance, otherwise use order in \code{prednames}.
+ If \code{weight} has multiple elements, the given weightings are shown but not the individual gears.  
                         
-Performance: \code{list(horizontal = FALSE, show.names = FALSE, cex.axis = 0.7, las = 2)}, where  \code{show.names} is set to TRUE or FALSE 
+Performance: \code{list(horizontal = FALSE, show.names = FALSE, cex.axis = 0.7, las = 2)}, where  
+\code{show.names} is set to \code{TRUE} or \code{FALSE} 
 to override the defaults on whether an x-axis label on performance plot is printed for each group.
 
 }
 
 
-\value{  NICK need mods as they apply to the combined plots.
+\value{ 
 
 The overall importance plot shows a simple barplot of the ranked importances of
 the physical variables. The most reliable importances are the \eqn{R^2} weighted importances.
 
-The predictor ranges plot   NICK
+The predictor ranges plot shows box plots of the observed predictors separately for each gear.
 
-The predictor density plot  NICK
+The predictor density plot shows the density of the observed predictors with gears denoted
+by colour; the combined density is also shown. 
 
 The cumulative importance plot is an integrated form of the split density plot.
 The cumulative importance is plotted separately for all species and averaged over all species.

@@ -26,7 +26,7 @@ if \code{TRUE} use linear extrapolation for predictor values outside the range o
 original site data, otherwise limit to the range of of the site data.
 }
   \item{\dots}{
-    further arguments passed to or from other methods.
+    further arguments passed to \code{cumimp}. 
 }
 }
 \details{

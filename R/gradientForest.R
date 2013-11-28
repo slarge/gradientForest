@@ -3,9 +3,11 @@ function(data,predictor.vars,response.vars,ntree=10,mtry=NULL, transform=NULL,ma
 {
   #Modified 07/10/2009 by S.J. Smith for Nick Ellis' version for either
   #regression or classification trees.
-  require(extendedForest)
-  X <- data[,predictor.vars]
-  Y <- data[,response.vars]
+
+  if(!inherits(data, "data.frame"))
+    stop("'data' must be a data.frame")
+  X <- data[predictor.vars]
+  Y <- data[response.vars]
   if (compact) {
     bins <- do.call("cbind",lapply(X, function(x) bin(x,nbin=nbin))) #Nick Ellis 9/12/2009
   }
@@ -59,7 +61,7 @@ function(data,predictor.vars,response.vars,ntree=10,mtry=NULL, transform=NULL,ma
         }
       } 
       else stop(paste("unknown randomForest type:",fit$type))
-    },silent=TRUE)
+    },silent=FALSE)
   }
 
   if (!length(result)) {
@@ -70,10 +72,10 @@ function(data,predictor.vars,response.vars,ntree=10,mtry=NULL, transform=NULL,ma
   rsq <- sapply(result,function(x) x$rsq[1])
   imp.rsq <- matrix(imp[,1],length(predictor.vars),dimnames=list(predictor.vars,names(result)))
   imp.rsq[imp.rsq<0] <- 0
-  imp.rsq <- sweep(imp.rsq,2,colSums(imp.rsq),"/")
+  imp.rsq <- sweep(imp.rsq,2,colSums(imp.rsq,na.rm=T),"/")
   imp.rsq <- sweep(imp.rsq,2,rsq,"*")
-  overall.imp  <- tapply(imp[,1],dimnames(imp)[[1]],mean)
-  overall.imp2 <- tapply(imp[,2],dimnames(imp)[[1]],mean)  
+  overall.imp  <- tapply(imp[,1],dimnames(imp)[[1]],mean,na.rm=T)
+  overall.imp2 <- tapply(imp[,2],dimnames(imp)[[1]],mean,na.rm=T)  
   out1 <- list(
     X=X,Y=Y,result=result,overall.imp=overall.imp,overall.imp2=overall.imp2,ntree=ntree,
     imp.rsq=imp.rsq,species.pos.rsq=species.pos.rsq,ranForest.type=fit$type

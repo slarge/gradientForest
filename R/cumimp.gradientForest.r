@@ -14,9 +14,13 @@ function (x, predictor, type=c("Overall","Species")[1], standardize=TRUE, standa
   # convert density to its inverse
   inverse <- function(dens) {dens$y <- 1/dens$y; dens}
   
+  # crude integral
+  crude.integrate <- function(f) sum(f$y)*diff(f$x)[1]
+  
   # normalize f(x) to f(x)/fbar
   normalize <- function(f) {
-    integral <- integrate(approxfun(f,rule=2),lower=min(f$x),upper=max(f$x))$value 
+    integral <- try(integrate(approxfun(f,rule=2),lower=min(f$x),upper=max(f$x))$value)
+    if (class(integral)=="try-error") integral <- crude.integrate(f)
     f$y <- f$y/integral*diff(range(f$x)); 
     f
   }

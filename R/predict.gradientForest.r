@@ -13,7 +13,7 @@ function (object, newdata, extrap=TRUE, ...)
         stop(paste("the following predictors are not in the gradientForest:\n\t",badnames,sep=""))
     }
     for (varX in newnames) {
-        ci <- cumimp(object, varX)
+        ci <- cumimp(object, varX, ...)
         xold <- range(ci$x)
         yold <- range(ci$y)
         xnew <- range(newdata[,varX],na.rm=T)

@@ -9,7 +9,7 @@ Importance of predictors or species for a combinedGradientForest object
 Provide access to the importance values of predictors or species
 }
 \usage{
-\method{importance}{combinedGradientForest}(x, type = c("Weighted", "Raw", "Species")[1], sort = T, ...)
+\method{importance}{combinedGradientForest}(x, type = c("Weighted", "Raw", "Species")[1], sort = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

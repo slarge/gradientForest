@@ -31,8 +31,7 @@ function (x, plot.type = c("Overall.Importance","Predictor.Ranges",
             
  if(plot.options[plot.option]=="Predictor.Ranges"){	
     plot.args.def<- amend.args(plot.args,list(...))     
-    par.args.def <- amend.args(list(mfrow = c(1, 2), mar = c(4, 6, 2, 1)), par.args)
-    par(par.args.def)    
+    if(!is.null(par.args)) par(par.args)
     do.call("predictor.ranges.plot",c(list(obj=quote(x)),plot.args.def))
 	}
               
@@ -46,8 +45,9 @@ function (x, plot.type = c("Overall.Importance","Predictor.Ranges",
   
     
                     
-if(plot.options[plot.option]=="Cumulative.Importance"){	
-    plot.args.def <- amend.args(list(weight=c("uniform","species","rsq.total","rsq.mean")[3],use.diff=FALSE, prednames=names(x$X)[-1]), plot.args)
+ if(plot.options[plot.option]=="Cumulative.Importance"){	
+    plot.args.def <- amend.args(list(weight="rsq.total", use.diff=FALSE, prednames=names(x$X)[-1], 
+      show.weights=FALSE, show.gears=TRUE, sort=TRUE), plot.args)
     plot.args.def<- amend.args(plot.args.def,list(...))     
     if(!is.null(par.args)) par(par.args)
     do.call("combined.cumulative.importance.plot",c(list(obj=quote(x)),plot.args.def)) 

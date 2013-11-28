@@ -16,8 +16,8 @@
     Xnames <- colnames(bins)
     tmp <- data.frame(var=Xnames[tmp[,"var_n"]], tmp, bin=rep(0,nrow(tmp)))
     for(p in Xnames) {
-        sub <- with(tmp,var==p)
-        tmp$bin[sub] <- as.numeric(cut(tmp$split[sub], bins[,p], include=TRUE, ordered=TRUE))
+        if(any(sub <- with(tmp,var==p)))
+          tmp$bin[sub] <- as.numeric(cut(tmp$split[sub], bins[,p], include=TRUE, ordered=TRUE))
     }
     tmp <- with(tmp[tmp$bin>0,],agg.sum(improve,list(var,bin),sort.it=TRUE))
     names(tmp) <- c("var","bin","improve")
@@ -27,8 +27,8 @@
     tmp <- cbind(tmp,split=rep(NA,nrow(tmp)),rsq=fit$rsq[fit$ntree])
     midpoints <- function(x) 0.5*(x[-1]+x[-length(x)]) # points between equally spaced points
     for(p in Xnames) {
-        sub <- with(tmp,var==p)
-        tmp$split[sub] <- midpoints(bins[,p])[tmp$bin[sub]]
+        if(any(sub <- with(tmp,var==p)))
+          tmp$split[sub] <- midpoints(bins[,p])[tmp$bin[sub]]
     }
     tmp[,c("var","rsq","split","improve","bin")]
 }
