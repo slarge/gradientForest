@@ -7,6 +7,6 @@ Author: S.J. Smith <Stephen.Smith@dfo-mpo.gc.ca> and N. Ellis <Nick.Ellis@csiro.
 Maintainer: N. Ellis <Nick.Ellis@csiro.au>
 Depends: R (>= 2.10.0), extendedForest, lattice
 Suggests: cluster
-Description: Analyses species data using random forests, collates the split-point improvements in impurity, and uses these to convert predictor variables into a biologically-informed importance scale. This version allows combinations of gradientForest objects with different predictors.
+Description: Analyses species data using random forests, collates the split-point improvements in impurity, and uses these to convert predictor variables into a biologically-informed importance scale. This version allows combinations of gradientForest objects with different predictors. 
 License: GPL (>= 2)
 URL: http://www.r-project.org
