@@ -4,18 +4,19 @@
 \alias{cumimp.gradientForest}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Cumulative Importance of predictors for a gradientForest object
+Cumulative Importance of predictors for a \code{gradientForest} object
 }
 \description{
 Provide access to cumulative importance curves for a predictor. It is a generic function.
 }
 \usage{
 cumimp(x, ...)
-\method{cumimp}{gradientForest}(x, predictor, type = c("Overall", "Species")[1], standardize=TRUE, standardize_after=FALSE, ...)
+\method{cumimp}{gradientForest}(x, predictor, type = c("Overall", "Species")[1], 
+standardize=TRUE, standardize_after=FALSE, ...)
 }
 \arguments{
   \item{x}{
-    an object of class "gradientForest", resulting from a call to \code{\link{gradientForest}}.
+    an object of class \code{gradientForest}, resulting from a call to \code{\link{gradientForest}}.
   }
   \item{predictor}{
     the name of the predictor
@@ -23,17 +24,18 @@ cumimp(x, ...)
   \item{type}{
     indicates the level of detail of the cumulative importance. The choices are
     \itemize{
- 	  \item{Overall}{a single overall cumulative importance sequence is returned}
-	  \item{Species}{a cumulative importance sequence is returned for each species}
+ 	  \item{\code{Overall}: a single overall cumulative importance sequence is returned}
+	  \item{\code{Species}: a cumulative importance sequence is returned for each species}
 	  }}
-  \item{standardize}{logical, if TRUE then importances are standardized by density}	  
-  \item{standardize_after}{logical, if TRUE then standardization, if applied, occurs after R^2 normalization. Default FALSE}	  
+  \item{standardize}{logical, if \code{TRUE} then importances are standardized by density}	  
+  \item{standardize_after}{logical, if \code{TRUE} then standardization, if applied, occurs after \eqn{R^2} normalization. Default \code{FALSE}}	  
   
   \item{...}{further arguments for other methods}
 }
 \value{
-if \code{type} is "Overall", a list with components \code{x} and  \code{y}, 
-where \code{x} is the predictor values and  \code{y} is the cumulative importance. 
+If \code{type} is "Overall", a single list with components \code{x} and  \code{y}, 
+where \code{x} is the predictor values and  \code{y} is the cumulative importance.
+If \code{type} is "Species", a list of such lists, one for each species.
 }
 \author{
     N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>.
@@ -55,7 +57,7 @@ for (sp in names(cu.sp))
   plot(cu.sp[[sp]],main=sp,xlab="A",ylab="Cumulative Importance")
 plot(cumimp(f1, "A", "Overall"),main="Overall")
 
-# Demonstrate differences between standardardization before and after normalization
+# Demonstrate differences between standardization before and after normalization
 par(mfrow=c(2,1))
 plot(density(f1,"A"),main="Density of predictor 'A'",xlab='A')
 rug(sample(density(f1,"A")$x,100))
@@ -64,7 +66,8 @@ plot(cumimp(f1,"A",standardize=FALSE),type='n',main="",ylab="Cum. importance",xl
 lines(cumimp(f1,"A"),type='l',col="black")
 lines(cumimp(f1,"A",standardize_after=TRUE),type='l',col="blue")
 lines(cumimp(f1,"A",standardize=FALSE),type='l',col="red")
-legend(par("usr")[1],par("usr")[4],legend=c("Standardize then Normalize (default)","Normalize then Standardize","Normalize only"),col=c("black","blue","red"),lty=1,cex=0.8)
+legend(par("usr")[1],par("usr")[4],legend=c("Standardize then Normalize (default)",
+"Normalize then Standardize","Normalize only"),col=c("black","blue","red"),lty=1,cex=0.8)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

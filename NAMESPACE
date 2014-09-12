@@ -9,6 +9,7 @@ export(
   plot.predict.gradientForest
 )
 
+import(lattice)
 importFrom(extendedForest, importance)
 importFrom(stats, density)
 S3method(cumimp, gradientForest)

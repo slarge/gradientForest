@@ -14,14 +14,14 @@ combinedGradientForest(..., nbin = 101, method=2, standardize=c("before","after"
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{\dots}{any number of gradientForest objects}
+  \item{\dots}{any number of \code{gradientForest} objects}
   \item{nbin}{number of bins for common predictor grid.  Default set to 101.
 }
-  \item{method}{  method=1, calls combine.cumulative.importance.method1, method=2 calls
-  combine.cumulative.importance.
+  \item{method}{  \code{method=1}, calls \code{combine.cumulative.importance.method1}, \code{method=2} calls
+  \code{combine.cumulative.importance}.
 }
-  \item{standardize}{ Should standardization by density occur before or after normalization to R^2?
-  Takes values "before" or "after", or abbreviations thereof. Default "before".
+  \item{standardize}{ Should standardization by density occur before or after normalization to \eqn{R^2}?
+  Takes values \code{"before"} or \code{"after"}, or abbreviations thereof. Default \code{"before"}.
 }
 }
 
@@ -30,8 +30,8 @@ combinedGradientForest(..., nbin = 101, method=2, standardize=c("before","after"
         the matched call
     }
     \item{X}{
-        combined data.frame of predictor variables with first column denoting
-        the name of the source gradientForest
+        combined data frame of predictor variables with first column denoting
+        the name of the source \code{gradientForest} object
     }
     \item{dens}{
         list of lists of Gaussian kernel density estimates for each physical

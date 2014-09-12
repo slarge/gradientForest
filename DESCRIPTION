@@ -1,12 +1,13 @@
 Package: gradientForest
 Type: Package
 Version: 0.1-16
-Date: 2014-09-08
+Date: 2014-09-14
 Title: Random Forest functions for the Census of Marine Life synthesis project.
 Author: S.J. Smith <Stephen.Smith@dfo-mpo.gc.ca> and N. Ellis <Nick.Ellis@csiro.au>
 Maintainer: N. Ellis <Nick.Ellis@csiro.au>
-Depends: R (>= 2.10.0), extendedForest, lattice
+Depends: R (>= 2.10.0), extendedForest
+Imports: lattice
 Suggests: cluster
-Description: Analyses species data using random forests, collates the split-point improvements in impurity, and uses these to convert predictor variables into a biologically-informed importance scale. This version allows combinations of gradientForest objects with different predictors. 
+Description: Analyses species data using random forests, collates the split-point improvements in impurity, and uses these to convert predictor variables into a biologically-informed importance scale. This version allows combinations of gradientForest objects with different predictors.
 License: GPL (>= 2)
 URL: http://www.r-project.org

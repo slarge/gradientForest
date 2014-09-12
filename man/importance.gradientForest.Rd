@@ -2,17 +2,18 @@
 \Rdversion{1.1}
 \alias{importance.gradientForest}
 \title{
-Importance of the variables in a gradientForest or combinedGradientForest object
+Importance of the variables in a \code{gradientForest} or \code{combinedGradientForest} object
 }
 \description{
 Compute the importance measures as a named vector
 }
 \usage{
-\method{importance}{gradientForest}(x, type = c("Accuracy", "Impurity", "Weighted", "Raw", "Species")[3], sort = TRUE, ...)
+\method{importance}{gradientForest}(x, type = c("Accuracy", "Impurity", "Weighted", "Raw", "Species")[3], 
+sort = TRUE, ...)
 }
 \arguments{
   \item{x}{
-    an object of class "gradientForest", resulting from a call to \code{\link{gradientForest}}
+    an object of class \code{gradientForest}, resulting from a call to \code{\link{gradientForest}}
   }
   \item{type}{
     the type of importance measure. For \code{type="Species"} the importance measure is the \eqn{R^2} value for each species.

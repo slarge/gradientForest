@@ -67,7 +67,7 @@ data(GBRexample)
       species abundance (where \code{c} is the minimum positive abundance \code{y}).
     }
     \item{gf.GBR}{
-      A gradient forest object built from the site data.
+      A \code{gradientForest} object built from the site data.
     }
   }
 }

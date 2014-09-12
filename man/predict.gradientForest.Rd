@@ -6,7 +6,7 @@
 Predict for gradientForest
 }
 \description{
-Predict method for gradientForest or combinedGradientForest objects.
+Predict method for \code{gradientForest} or \code{combinedGradientForest} objects.
 }
 \usage{
 \method{predict}{gradientForest}(object, newdata, extrap=TRUE, ...)
@@ -15,7 +15,7 @@ Predict method for gradientForest or combinedGradientForest objects.
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
-an object of class \code{"gradientForest"} or \code{"combinedGradientForest"}. 
+an object of class \code{gradientForest} or \code{combinedGradientForest}. 
 }
   \item{newdata}{
 An optional data frame in which to look for variables with which to predict. 

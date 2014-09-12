@@ -1,0 +1,16 @@
+citHeader("To cite gradientForest in publications use:")
+
+citEntry(
+  entry="Article",
+  title = "Gradient Forests: calculating importance gradients on physical predictors",
+  author = personList(
+    person(family="Ellis", given="N."),
+    person(family="Smith", given="S.J."),
+    person(family="Pitcher", given="C.R.")
+  ),
+  journal = "Ecology",
+  year         = "2012",
+  volume       = "93",
+  pages        = "156-168",
+  textVersion =  "Ellis, N., Smith, S.J., and Pitcher, C.R. (2012) Gradient Forests: calculating importance gradients on physical predictors. Ecology, 93, 156-168."
+)

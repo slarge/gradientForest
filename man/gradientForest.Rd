@@ -9,7 +9,8 @@ Create gradientforest objects
 This function uses the modified extendedForest package to conduct analysis on benthic data in the CoML synthesis project.
 }
 \usage{
-gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NULL,maxLevel=0,corr.threshold=0.5,compact=FALSE,nbin=101,trace=FALSE)
+gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NULL,
+maxLevel=0,corr.threshold=0.5,compact=FALSE,nbin=101,trace=FALSE)
 }
  
 \arguments{
@@ -44,8 +45,14 @@ gradientForest(data,predictor.vars,response.vars,ntree=10,mtry=NULL,transform=NU
    \item{trace}{if \code{TRUE} show the progress. Default \code{FALSE}.}                    
 
 }
-\details{see \link{randomForest}
-%%  ~~ If necessary, more details than the description above ~~
+\details{
+\code{gradientForest} uses an extended version 
+of the package \pkg{randomForest} (Liaw and Wiener 2002), \pkg{extendedForest} which retains all of 
+the split values and fit improvements for each of the response variables (species catches in our case) for 
+further analysis. \code{gradientForest} collates the numerous split values along each gradient
+and their associated fit improvements for each species that were retained by \code{extendedForest},
+for each predictor in each tree and each forest. Details on the method are given in Ellis et al. (2012) and applications
+are described in Pitcher et al. (2012).
 }
 \value{
  \item{X}{data.frame of predictor variables.}
@@ -80,6 +87,10 @@ gradients on physical predictors. \emph{Ecology}, \bold{93}, 156--168.
 
 Liaw, A. and Wiener, M. (2002) Classification and regression by randomforest. \emph{R News}, \bold{2(3)},
 18--22. \url{http://CRAN.R-project.org/doc/Rnews/}
+
+Pitcher, C.R., P. Lawton, N. Ellis, S.J. Smith, L.S. Incze, C-L. Wei, M.E. Greenlaw, N.H. Wolff, J.A. Sameoto, 
+P.V.R. Snelgrove. (2012) Exploring the role of environmental variables in shaping patterns of biodiversity 
+composition in seabed assemblages. \emph{Journal of Applied Ecology}, \bold{49}, 670--679.
 
 Strobl, C. Boulesteix, A.-L., Kneib, T., Augustin, T. and  Zeilis, A. (2008) Conditional variable 
 importance for random forests. \emph{BMC Bioinformatics}, \bold{9}, 307--317. 
