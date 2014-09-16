@@ -10,7 +10,8 @@ Plot method for \code{combinedGradientForest} objects.
 }
 \usage{
 \method{plot}{combinedGradientForest}(x, plot.type = c("Overall.Importance","Predictor.Ranges",
-"Predictor.Density","Cumulative.Importance","Performance")[1],par.args=NULL,plot.args=NULL,...)
+"Predictor.Density","Cumulative.Importance","Performance")[1],par.args=NULL,
+plot.args=NULL,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
