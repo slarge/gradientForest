@@ -56,7 +56,7 @@ combine.cumulative.importance.lm <- function(CUList, densList, grid, weight) {
     # Fit using weighted least squares
     # We could estimate standard errors too
     for (w in 1:nweight) {   
-      fit <- lm(importance ~ density:factor(grid) - 1, df, weight=density*weight, subset=weightrow==w)
+      fit <- lm(importance ~ density:factor(grid) - 1, df, weights=density*weight, subset=weightrow==w)
       X <- model.matrix(~ factor(grid) - 1, df)
       se <- sqrt(diag(X %*% vcov(fit) %*% t(X)))
       CU[,w] <- predict(fit,newdata=subset(transform(df,density=1),gear==1 & weightrow==1))

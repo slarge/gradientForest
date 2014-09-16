@@ -14,12 +14,12 @@ function (x, X, Y, palette="rg", col3=127, ...)
     
     # plot predicted PC scores
     col <- switch(palette,
-    rg=rgb(r=col1, g=col2, b=col3, max=255),
-    rb=rgb(r=col1, b=col2, g=col3, max=255),
-    gb=rgb(g=col1, b=col2, r=col3, max=255),
-    gr=rgb(g=col1, r=col2, b=col3, max=255),
-    br=rgb(b=col1, r=col2, g=col3, max=255),
-    bg=rgb(b=col1, g=col2, r=col3, max=255)    
+    rg=rgb(red=col1, green=col2, blue=col3, maxColorValue=255),
+    rb=rgb(red=col1, blue=col2, green=col3, maxColorValue=255),
+    gb=rgb(green=col1, blue=col2, red=col3, maxColorValue=255),
+    gr=rgb(green=col1, red=col2, blue=col3, maxColorValue=255),
+    br=rgb(blue=col1, red=col2, green=col3, maxColorValue=255),
+    bg=rgb(blue=col1, green=col2, red=col3, maxColorValue=255)    
     )
     plot(X, Y, col=col, ...)
     invisible()
