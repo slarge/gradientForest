@@ -11,7 +11,7 @@ Extracts Gaussian kernel density estimates for a specified physical variable.
 \usage{
 \method{density}{gradientForest}(x, predictor, ...)
 
-\method{density}{combinedGradientForest}(x, predictor, gridded=F, gear, ...)
+\method{density}{combinedGradientForest}(x, predictor, gridded=F, gf.name, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,10 +24,10 @@ name of predictor variable.
 }
   \item{gridded}{
 if \code{TRUE}, supply density on the predictor grid that was used to create the \code{combinedGradientForest} object.
-This ensures that densities for different gears, or the combined density, are aligned with the same predictor values. Default \code{FALSE}.
+This ensures that densities for different \code{gradientForest} objects, or the combined density, are aligned with the same predictor values. Default \code{FALSE}.
 }
-  \item{gear}{
-name of the gear for which density is required. If missing, the combined density is supplied.
+  \item{gf.name}{
+name of the \code{gradientForest} object for which density is required. If missing, the combined density is supplied.
 }
   \item{\dots}{
 further arguments passed to or from other methods.

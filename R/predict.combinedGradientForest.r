@@ -1,7 +1,9 @@
 `predict.combinedGradientForest` <-
 function (object, newdata, extrap=TRUE, ...)
 {
-    linfun <- function(xold,yold,xnew) 
+    if (!inherits(object,"combinedGradientForest"))
+      stop(paste("'object' must be a combinedGradientForest object"))
+    linfun <- function(xold,yold,xnew)
         yold[1] + (xnew-xold[1])*diff(yold)/diff(xold)
     if (missing(newdata))
         newdata <- object$X[,-1]

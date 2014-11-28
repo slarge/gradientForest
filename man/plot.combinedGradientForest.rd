@@ -61,14 +61,14 @@ Predictor.Ranges: None
   
 Predictor.Density: None
    
-Cumulative.Importance: \code{list(weight="rsq.total", use.diff=FALSE, }\code{prednames=names(x$X)[-1], show.weights=FALSE, }\code{show.gears=TRUE, sort=TRUE)}, where:
- \code{weight} is the type of weighting to perform across gears (see same argument in \code{\link{cumimp.combinedGradientForest}}); 
+Cumulative.Importance: \code{list(weight="rsq.total", use.diff=FALSE, }\code{prednames=names(x$X)[-1], show.weights=FALSE, }\code{show.gf.names=TRUE, sort=TRUE)}, where:
+ \code{weight} is the type of weighting to perform across \code{gradientForest} objects (see same argument in \code{\link{cumimp.combinedGradientForest}}); 
  if \code{use.diff=TRUE} the differenced cumulative importances are plotted; 
  \code{prednames} is the names of the predictors for which plots are required;
- if \code{show.weights=TRUE} indicate gear weight per bin by colour saturation;
- if \code{show.gears=FALSE} do not show the individual gear cumulative curves;
+ if \code{show.weights=TRUE} indicate \code{gradientForest} object weight per bin by colour saturation;
+ if \code{show.gf.names=FALSE} do not show the individual \code{gradientForest} object cumulative curves;
  and if \code{sort=TRUE}, sort predictors by importance, otherwise use order in \code{prednames}.
- If \code{weight} has multiple elements, the given weightings are shown but not the individual gears.  
+ If \code{weight} has multiple elements, the given weightings are shown but not the individual \code{gradientForest} objects.  
                         
 Performance: \code{list(horizontal = FALSE, show.names = FALSE, cex.axis = 0.7, las = 2)}, where  
 \code{show.names} is set to \code{TRUE} or \code{FALSE} 
@@ -82,9 +82,9 @@ to override the defaults on whether an x-axis label on performance plot is print
 The overall importance plot shows a simple barplot of the ranked importances of
 the physical variables. The most reliable importances are the \eqn{R^2} weighted importances.
 
-The predictor ranges plot shows box plots of the observed predictors separately for each gear.
+The predictor ranges plot shows box plots of the observed predictors separately for each \code{gradientForest} object.
 
-The predictor density plot shows the density of the observed predictors with gears denoted
+The predictor density plot shows the density of the observed predictors with \code{gradientForest} objects denoted
 by colour; the combined density is also shown. 
 
 The cumulative importance plot is an integrated form of the split density plot.

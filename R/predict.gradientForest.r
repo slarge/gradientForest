@@ -1,7 +1,9 @@
 `predict.gradientForest` <-
 function (object, newdata, extrap=TRUE, ...)
 {
-    linfun <- function(xold,yold,xnew) 
+    if (!inherits(object,"gradientForest"))
+      stop(paste("'object' must be a gradientForest object"))
+    linfun <- function(xold,yold,xnew)
         yold[1] + (xnew-xold[1])*diff(yold)/diff(xold)
     if (missing(newdata))
         newdata <- object$X

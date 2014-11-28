@@ -4,6 +4,8 @@ function (x, plot.type = c("Overall.Importance","Predictor.Ranges",
         par.args=NULL,plot.args=NULL,...)
          
 {   plot.options <- c("Overall.Importance","Predictor.Ranges","Predictor.Density","Cumulative.Importance","Performance")
+  if (!inherits(x,"combinedGradientForest"))
+    stop(paste("'x' must be a combinedGradientForest object"))
   if (is.na(plot.option <- pmatch(plot.type,plot.options)))
     stop(paste('Unmatched plot.type "',plot.type,'". Expecting one of "Overall.Importance", "Predictor.Ranges", "Predictor.Density", "Cumulative.Importance" or "Performance")',sep=""))
 
@@ -47,7 +49,7 @@ function (x, plot.type = c("Overall.Importance","Predictor.Ranges",
                     
  if(plot.options[plot.option]=="Cumulative.Importance"){	
     plot.args.def <- amend.args(list(weight="rsq.total", use.diff=FALSE, prednames=names(x$X)[-1], 
-      show.weights=FALSE, show.gears=TRUE, sort=TRUE), plot.args)
+      show.weights=FALSE, show.gf.names=TRUE, sort=TRUE), plot.args)
     plot.args.def<- amend.args(plot.args.def,list(...))     
     if(!is.null(par.args)) par(par.args)
     do.call("combined.cumulative.importance.plot",c(list(obj=quote(x)),plot.args.def)) 

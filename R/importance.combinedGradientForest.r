@@ -1,6 +1,8 @@
 `importance.combinedGradientForest` <-
 function (x, type=c("Weighted","Raw","Species")[1], sort=TRUE, ...)
 {
+    if (!inherits(x,"combinedGradientForest"))
+      stop(paste("'x' must be a combinedGradientForest object"))
     weighted <- rowSums(x$imp.rsq, na.rm=TRUE)/ncol(x$imp.rsq)
     if (sort)
       o <- order(-weighted)

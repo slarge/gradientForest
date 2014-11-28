@@ -10,7 +10,7 @@ Provide access to the cumulative importance values of predictors after combining
 }
 \usage{
 \method{cumimp}{combinedGradientForest}(x, predictor, weight = c("uniform", "species", "rsq.total", 
-"rsq.mean", "site", "site.species", "site.rsq.total", "site.rsq.mean")[3], gear, ...)
+"rsq.mean", "site", "site.species", "site.rsq.total", "site.rsq.mean")[3], gf.name, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,34 +21,34 @@ Provide access to the cumulative importance values of predictors after combining
     the name of the predictor variable. 
   }
   \item{weight}{
-    type of weighting to perform across gears. The choices are
+    type of weighting to perform across \code{gradientForest} objects. The choices are
     \itemize{
- 	  \item{\code{uniform}: each gear gets weight 1}
-	  \item{\code{species}: each gear gets weight equal to the number of species}
-	  \item{\code{rsq.total}: each gear gets weight equal to the total \eqn{R^2} (default)}
-	  \item{\code{rsq.mean}: each gear gets weight equal to the mean \eqn{R^2} per species}
- 	  \item{\code{site}: each gear gets weight equal to the number of sites}
-	  \item{\code{site.species}: each gear gets weight equal to the number of species times the number of sites}
-	  \item{\code{site.rsq.total}: each gear gets weight equal to the total \eqn{R^2} times the number of sites}
-	  \item{\code{site.rsq.mean}: each gear gets weight equal to the mean \eqn{R^2} per species times the number of sites}
+ 	  \item{\code{uniform}: each \code{gradientForest} object gets weight 1}
+	  \item{\code{species}: each \code{gradientForest} object gets weight equal to the number of species}
+	  \item{\code{rsq.total}: each \code{gradientForest} object gets weight equal to the total \eqn{R^2} (default)}
+	  \item{\code{rsq.mean}: each \code{gradientForest} object gets weight equal to the mean \eqn{R^2} per species}
+ 	  \item{\code{site}: each \code{gradientForest} object gets weight equal to the number of sites}
+	  \item{\code{site.species}: each \code{gradientForest} object gets weight equal to the number of species times the number of sites}
+	  \item{\code{site.rsq.total}: each \code{gradientForest} object gets weight equal to the total \eqn{R^2} times the number of sites}
+	  \item{\code{site.rsq.mean}: each \code{gradientForest} object gets weight equal to the mean \eqn{R^2} per species times the number of sites}
 	  }
   }
-  \item{gear}{
-    name of gear required. If supplied, provide the cumulative importance
-    for the specific \code{gradientForest} object associated with this gear name. \code{weight}
+  \item{gf.name}{
+    name of \code{gradientForest} object required. If supplied, provide the cumulative importance
+    for the specific \code{gradientForest} object. \code{weight}
     is ignored in this case.
   }
   \item{\ldots}{further arguments passed to or from other methods.}
 }
 \details{
-Cumulative importance curves are found for each predictor by weighting across the gears.
+Cumulative importance curves are found for each predictor by weighting across the \code{gradientForest} objects.
 See the section \emph{Compositional turnover} and equation (9) in Ellis et al (2012).
 }
 \value{
-If \code{gear} is missing, a list with components \code{x} and  \code{y}, 
+If \code{gf.name} is missing, a list with components \code{x} and  \code{y}, 
 where \code{x} is the predictor values and  \code{y} is the combined cumulative importance
-using the specified weighting across gears.
-If \code{gear} is supplied, the list for the predictor from the specified gear is returned.
+using the specified weighting across \code{gradientForest} objects.
+If \code{gf.name} is supplied, the list for the predictor from the specified \code{gradientForest} object is returned.
 }
 \author{
     N. Ellis, CSIRO, Cleveland, Australia. <Nick.Ellis@csiro.au>.
@@ -71,7 +71,7 @@ f1 <- gradientForest(data.frame(Ysimulation,Xsimulation), preds, specs[1:6], ntr
 f2 <- gradientForest(data.frame(Ysimulation,Xsimulation), preds, specs[1:6+6], ntree=10)
 f12 <- combinedGradientForest(west=f1,east=f2)
 par(mfrow=c(1,3))
-plot(cumimp(f12, "A", gear="west"),main="West")
-plot(cumimp(f12, "A", gear="east"),main="East")
+plot(cumimp(f12, "A", gf.name="west"),main="West")
+plot(cumimp(f12, "A", gf.name="east"),main="East")
 plot(cumimp(f12, "A", weight = "rsq.total"),main="Combined")
 }

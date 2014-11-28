@@ -1,6 +1,8 @@
 `importance.gradientForest` <-
 function (x, type=c("Accuracy","Impurity","Weighted","Raw","Species")[3], sort=TRUE, ...)
 {
+    if (!inherits(x,"gradientForest"))
+      stop(paste("'x' must be a gradientForest object"))
     weighted <- rowSums(x$imp.rsq, na.rm=TRUE)/ncol(x$imp.rsq)
     if (sort)
       o <- order(-weighted)

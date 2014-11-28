@@ -2,6 +2,8 @@
 function(x,	plot.type=c("Overall.Importance","Split.Density","Cumulative.Importance","Performance")[1], 
 par.args=NULL, plot.args=NULL, ...) 
 {
+  if (!inherits(x,"gradientForest"))
+    stop(paste("'x' must be a gradientForest object"))
   plot.options <- c("Overall.Importance","Split.Density","Cumulative.Importance","Performance")
   if (is.na(plot.option <- pmatch(plot.type,plot.options)))
     stop(paste('Unmatched plot.type "',plot.type,'". Expecting one of "Overall.Importance", "Split.Density", "Cumulative.Importance" or "Performance"',sep=""))

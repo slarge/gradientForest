@@ -24,8 +24,8 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
 #      stop("Every forest must have the same number of predictors")
     prednames <- lapply(fList, function(obj) sort(names(obj$X)))  # TO DO: allow for sorting
     allpreds <- unique(sort(unlist(prednames)))
-#   find gears that support each predictor
-    gears <- lapply(namenames(allpreds), function(predictor) gearnames[sapply(prednames, is.element, el=predictor)])
+#   find gradientForest objects that support each predictor
+    gf.names <- lapply(namenames(allpreds), function(predictor) gearnames[sapply(prednames, is.element, el=predictor)])
 #    if(!all(prednames == prednames[,1]))
 #      stop("Every forest must have the same predictors")
 #    prednames <- prednames[,1]
@@ -40,8 +40,8 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
       X
     }
 
-    X <- do.call("rbind",lapply(gearnames, function(a) {cbind(gear=a,create.df(fList[[a]]$X))}))
-#    X <- do.call("rbind",lapply(gearnames, function(a) {cbind(gear=a,fList[[a]]$X)}))
+    X <- do.call("rbind",lapply(gearnames, function(a) {cbind(gf.name=a,create.df(fList[[a]]$X))}))
+#    X <- do.call("rbind",lapply(gearnames, function(a) {cbind(gf.name=a,fList[[a]]$X)}))
     bins <- do.call("cbind",lapply(X[allpreds], function(x) bin(x,nbin=nbin)))
     imp.rsq.list <- lapply(fList, function(x) create.df(x$imp.rsq,transpose=T))
     imp.rsq <- do.call("cbind",imp.rsq.list)
@@ -49,9 +49,9 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
 #
 #   combined density calculation
     X_r <- cbind(X[,1], stack(X[allpreds]))
-    names(X_r) <- c("gear","value","predictor")
+    names(X_r) <- c("gf.name","value","predictor")
     nspec <- sapply(fList,"[[","species.pos.rsq")
-    X_r$nspec <- nspec[X_r$gear]
+    X_r$nspec <- nspec[X_r$gf.name]
     X_r <- na.omit(X_r)
     dens <- with(X_r,tapply(1:nrow(X_r),predictor,function(sub) {
       whiten(density(value[sub],weight=nspec[sub]/sum(nspec[sub])),lambda=0.95)
@@ -81,11 +81,11 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
     }
 
     CU <- lapply(namenames(allpreds), function(predictor)
-      lapply(fList[gears[[predictor]]], gridded.cumulative.importance, predictor=predictor))
+      lapply(fList[gf.names[[predictor]]], gridded.cumulative.importance, predictor=predictor))
     rsq.total <- sapply(lapply(fList,"[[","result"),sum)
     imp.rsq.total <- sapply(imp.rsq.list,rowSums,na.rm=TRUE)
     for (predictor in allpreds) {
-      g <- gears[[predictor]]
+      g <- gf.names[[predictor]]
       weight <- rbind(
         uniform = rep(1,length(g)), 
         species = nspec[g], 
@@ -118,7 +118,7 @@ function(..., nbin=101, method=2, standardize=c("before","after")[1])
       rsq = rsq,
       nspec = nspec,
       CU = CU,
-      gears = gears
+      gf.names = gf.names
       )
     class(out) <- c("combinedGradientForest","list")
     out

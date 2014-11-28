@@ -54,8 +54,8 @@ combinedGradientForest(..., nbin = 101, method=2, standardize=c("before","after"
         list of lists of cumulative importance for each predictor and source.
         Also holds the combined cumulative importance and the gridded density per predictor.
     }
-    \item{gears}{
-        list of gears having information on each predictor.
+    \item{gf.names}{
+        list of \code{gradientForest} objects having information on each predictor.
     }
 }
 \references{

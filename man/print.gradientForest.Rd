@@ -26,7 +26,7 @@ further arguments passed to or from other methods.
 
 Provides a brief summary of of the number of trees in the forest for the number of species with positive \eqn{R^2} as well as a list of
 the important predictor variables.   If \code{x} is a \code{combinedGradientForest} object, this function provides
-the number of gears (surveys) that were combined. 
+the number of \code{gradientForest} objects that were combined. 
 
 }
 \references{
